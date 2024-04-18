@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+    <title>Zackateria Menu</title>
+    <head>
+        <link rel="stylesheet" href="../css/style.css">
+        <script>
+            function submitOrder() {
+                // Retrieve selected items and quantities.
+                var spaghettiQty = document.getElementById("spaghettiQty").value;
+                var pizzaQty = document.getElementById("pizzaQty").value;
+                var saladQty = document.getElementById("saladQty").value;
+                var falafelQty = document.getElementById("falafelQty").value;
+
+                // Validate quantities.
+                if (!validateQuantity(spaghettiQty) || !validateQuantity(pizzaQty) || !validateQuantity(saladQty) || !validateQuantity(falafelQty)) {
+                    alert("Quantity must either be 0, or a positive number between 1 and 10.");
+                    return;
+                }
+
+                // Calculate total cost
+                var totalCost = spaghettiQty * 8.99 + pizzaQty * 10.99 + saladQty * 7.99 + falafelQty * 9.99;
+
+                // Create order summary message
+                var confirmationMessage = "Order Successful!\n\nOrder Summary:\n";
+                if (spaghettiQty > 0) {
+                    confirmationMessage += "Spaghetti x " + spaghettiQty + "\n";
+                }
+                if (pizzaQty > 0) {
+                    confirmationMessage += "Pepperoni Pizza x " + pizzaQty + "\n";
+                }
+                if (saladQty > 0) {
+                    confirmationMessage += "Caesar Salad x " + saladQty + "\n";
+                }
+                if (falafelQty > 0) {
+                    confirmationMessage += "Falafel Pita x " + falafelQty + "\n";
+                }
+                confirmationMessage += "Total Cost: $" + totalCost.toFixed(2);
+                
+                // Display confirmation message.
+                alert(confirmationMessage);
+            }
+
+            function validateQuantity(quantity) {
+                return !isNaN(quantity) && parseInt(quantity) >= 0 && parseInt(quantity) <= 10;
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>The Zackateria</h1>
+            University of Houston's New Student Cafeteria<br>
+            <nav>
+                <ul>
+                    <li><a href="main.html">Main Page</a></li>
+                    <li><a href="menu.html">Weekly Menu</a></li>
+                    <li><a href="bio.html">Biography</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section>
+                <h1>Menu</h1>
+                <form id="orderForm">
+                    <div class="order-item-container">
+                        <img src="../images/spaghetti.jpg" alt="Spaghetti" class="order-item-image">
+                        <div class="order-item-details">
+                            <div class="order-item-name">Spaghetti</div>
+                            <div class="order-item-price">$8.99</div>
+                            <div class="order-item-description">Delicious spaghetti served with marinara sauce.</div>
+                        </div>
+                        <label for="spaghettiQty">Qty:</label>
+                        <input type="number" id="spaghettiQty" name="spaghettiQty" value="0" min="0"><br><br>
+                    </div>
+                    <div class="order-item-container">
+                        <img src="../images/pizza.jpg" alt="Pepperoni Pizza" class="order-item-image">
+                        <div class="order-item-details">
+                            <div class="order-item-name">Pepperoni Pizza</div>
+                            <div class="order-item-price">$10.99</div>
+                            <div class="order-item-description">Classic pepperoni pizza with mozzarella cheese.</div>
+                        </div>
+                        <label for="pizzaQty">Qty:</label>
+                        <input type="number" id="pizzaQty" name="pizzaQty" value="0" min="0"><br><br>
+                    </div>
+                    <div class="order-item-container">
+                        <img src="../images/salad.jpg" alt="Caesar Salad" class="order-item-image">
+                        <div class="order-item-details">
+                            <div class="order-item-name">Caesar Salad</div>
+                            <div class="order-item-price">$7.99</div>
+                            <div class="order-item-description">Fresh romaine lettuce with Caesar dressing.</div>
+                        </div>
+                        <label for="saladQty">Qty:</label>
+                        <input type="number" id="saladQty" name="saladQty" value="0" min="0"><br><br>
+                    </div>
+                    <div class="order-item-container">
+                        <img src="../images/pita.png" alt="Falafel Pita" class="order-item-image">
+                        <div class="order-item-details">
+                            <div class="order-item-name">Falafel Pita</div>
+                            <div class="order-item-price">$9.99</div>
+                            <div class="order-item-description">Authentic Middle Eastern falafel wrapped in pita bread.</div>
+                        </div>
+                        <label for="falafelQty">Qty:</label>
+                        <input type="number" id="falafelQty" name="falafelQty" value="0" min="0"><br><br>
+                    </div>
+                    <input type="button" value="Submit Order" onclick="submitOrder()">
+                </form>
+            </section>
+            <footer>
+                <br>
+                <a href="../html/main.html">Main Page</a>
+            </footer>
+        </main>
+    </body>
+</html>
